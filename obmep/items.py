@@ -1,12 +1,33 @@
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
-
 import scrapy
 
 
-class ObmepItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class City(scrapy.Item):
+    state_code = scrapy.Field()
+    city = scrapy.Field()
+
+
+class School(scrapy.Item):
+    state_code = scrapy.Field()
+    city = scrapy.Field()
+    school = scrapy.Field()
+    school_type = scrapy.Field()
+
+
+class Student(scrapy.Item):
+    level = scrapy.Field()
+    name = scrapy.Field()
+    school = scrapy.Field()
+    school_type = scrapy.Field()
+    city = scrapy.Field()
+    state_code = scrapy.Field()
+    medal = scrapy.Field()
+    honorable_mention = scrapy.Field()
+
+
+class Teacher(scrapy.Item):
+    state_code = scrapy.Field()
+    city = scrapy.Field()
+    teacher = scrapy.Field()
+    school = scrapy.Field()
+    school_type = scrapy.Field()
+    group = scrapy.Field()

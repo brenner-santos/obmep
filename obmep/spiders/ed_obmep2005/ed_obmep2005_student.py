@@ -1,5 +1,7 @@
 import scrapy
 
+from obmep.items import Student
+
 
 class EdObmep2005Student(scrapy.Spider):
     name = 'EdObmep2005Student'
@@ -15,13 +17,13 @@ class EdObmep2005Student(scrapy.Spider):
             level = table.css('font::text').get().strip()
             for row in table.css('tbody tr'):
                 data = row.css('td::text').getall()
-                yield {
-                    'level': level,
-                    'name': data[1].strip(),
-                    'school': data[2].strip(),
-                    'school_type': data[3].strip(),
-                    'city': data[4].strip(),
-                    'state_code': data[5].strip(),
-                    'medal': data[6].strip(),
-                    'honorable_mention': data[7].strip(),
-                }
+                yield Student(
+                    level=level,
+                    name=data[1].strip(),
+                    school=data[2].strip(),
+                    school_type=data[3].strip(),
+                    city=data[4].strip(),
+                    state_code=data[5].strip(),
+                    medal=data[6].strip(),
+                    honorable_mention=data[7].strip(),
+                )

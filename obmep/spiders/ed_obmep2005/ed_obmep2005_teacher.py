@@ -1,5 +1,7 @@
 import scrapy
 
+from obmep.items import Teacher
+
 
 class EdObmep2005Teacher(scrapy.Spider):
     name = 'EdObmep2005Teacher'
@@ -11,11 +13,11 @@ class EdObmep2005Teacher(scrapy.Spider):
     def parse(self, response):
         for row in response.css('tbody tr'):
             data = row.css('td::text').getall()
-            yield {
-                'state_code': data[1].strip(),
-                'city': data[2].strip(),
-                'teacher': data[3].strip(),
-                'school': data[4].strip(),
-                'school_type': data[5].strip(),
-                'group': None,
-            }
+            yield Teacher(
+                state_code=data[1].strip(),
+                city=data[2].strip(),
+                teacher=data[3].strip(),
+                school=data[4].strip(),
+                school_type=data[5].strip(),
+                group=None,
+            )
