@@ -13,4 +13,3 @@ COPY pyproject.toml ./
 COPY obmep ./obmep
 
 RUN poetry install
-RUN pre-commit install

@@ -20,11 +20,11 @@ class EdObmep2005StudentSpider(BaseStudentSpider):
                 data = row.css('td::text').getall()
                 yield StudentItem(
                     level=level,
-                    name=data[1].strip(),
-                    school=data[2].strip(),
-                    school_type=data[3].strip(),
-                    city=data[4].strip(),
-                    state_code=data[5].strip(),
-                    medal=data[6].strip(),
-                    honorable_mention=data[7].strip(),
+                    name=data[1],
+                    school=data[2],
+                    school_type=data[3],
+                    city=data[4],
+                    state_code=data[5],
+                    medal=data[6],
+                    honorable_mention=data[7],
                 )

@@ -15,8 +15,9 @@ class EdObmep2005SchoolSpider(BaseSchoolSpider):
         for row in response.css('table:last-of-type tbody tr'):
             data = row.css('td::text').getall()
             yield SchoolItem(
-                state_code=data[1].strip(),
-                city=data[2].strip(),
-                school=data[3].strip(),
-                school_type=data[4].strip(),
+                state_code=data[1],
+                city=data[2],
+                school=data[3],
+                school_type=data[4],
+                group=None,
             )
