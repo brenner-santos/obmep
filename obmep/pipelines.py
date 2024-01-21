@@ -1,5 +1,6 @@
 from sqlalchemy.orm import sessionmaker
-from obmep.models import Base, db_connect, create_table
+
+from obmep.models import Base, create_table, db_connect
 
 
 class DefaultValuesPipeline:

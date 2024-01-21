@@ -1,7 +1,7 @@
 FROM python:3.11-alpine
 
 RUN  apk update \
-     && apk add gcc python3-dev musl-dev linux-headers \
+     && apk add bash gcc python3-dev musl-dev linux-headers \
      && apk add git \
      && pip install poetry 
 
@@ -13,3 +13,4 @@ COPY pyproject.toml ./
 COPY obmep ./obmep
 
 RUN poetry install
+RUN pre-commit install

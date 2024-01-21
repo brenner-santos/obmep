@@ -2,7 +2,7 @@
 name = "obmep"
 version = "0.1.0"
 description = ""
-authors = ["brenner-santos (bs.brenner.santos@gmail.com)"]
+authors = ["Brenner Santos <bs.brenner.santos@gmail.com>"]
 license = "MIT License"
 readme = "README.md"
 
@@ -11,11 +11,20 @@ python = "^3.10"
 scrapy = "^2.11.0"
 sqlalchemy = "^2.0.25"
 
-
 [tool.poetry.group.dev.dependencies]
 blue = "^0.9.1"
 isort = "^5.13.2"
+pre-commit = "^3.6.0"
+taskipy = "^1.12.2"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.taskipy.tasks]
+check = "blue --check --diff . && isort --check --diff ."
+format = "blue . && isort ."
