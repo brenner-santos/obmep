@@ -5,6 +5,7 @@ class CityItem(scrapy.Item):
     edition = scrapy.Field()
     state_code = scrapy.Field()
     city = scrapy.Field()
+    created_at = scrapy.Field()
 
 
 class SchoolItem(scrapy.Item):
@@ -14,6 +15,7 @@ class SchoolItem(scrapy.Item):
     school = scrapy.Field()
     school_type = scrapy.Field()
     group = scrapy.Field()
+    created_at = scrapy.Field()
 
 
 class StudentItem(scrapy.Item):
@@ -26,6 +28,7 @@ class StudentItem(scrapy.Item):
     state_code = scrapy.Field()
     medal = scrapy.Field()
     honorable_mention = scrapy.Field()
+    created_at = scrapy.Field()
 
 
 class TeacherItem(scrapy.Item):
@@ -36,3 +39,4 @@ class TeacherItem(scrapy.Item):
     school = scrapy.Field()
     school_type = scrapy.Field()
     group = scrapy.Field()
+    created_at = scrapy.Field()

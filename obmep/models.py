@@ -1,6 +1,7 @@
 from scrapy.utils.project import get_project_settings
-from sqlalchemy import Column, String, create_engine
+from sqlalchemy import Column, create_engine
 from sqlalchemy.orm import declarative_base
+from sqlalchemy.types import BOOLEAN, DATETIME, NCHAR, NVARCHAR, SMALLINT
 
 Base = declarative_base()
 
@@ -16,43 +17,47 @@ def create_table(engine):
 class City(Base):
     __tablename__ = 'city'
 
-    edition = Column(String, primary_key=True)
-    state_code = Column(String, primary_key=True)
-    city = Column(String, primary_key=True)
+    edition = Column(NVARCHAR(20), primary_key=True)
+    state_code = Column(NCHAR(2), primary_key=True)
+    city = Column(NVARCHAR(30), primary_key=True)
+    created_at = Column(DATETIME, nullable=False)
 
 
 class School(Base):
     __tablename__ = 'school'
 
-    edition = Column(String, primary_key=True)
-    state_code = Column(String, primary_key=True)
-    city = Column(String, primary_key=True)
-    school = Column(String, primary_key=True)
-    school_type = Column(String)
-    group = Column(String)
+    edition = Column(NVARCHAR(20), primary_key=True)
+    state_code = Column(NCHAR(2), primary_key=True)
+    city = Column(NVARCHAR(30), primary_key=True)
+    school = Column(NVARCHAR(100), primary_key=True)
+    school_type = Column(NCHAR(1), nullable=False)
+    group = Column(NCHAR(2))
+    created_at = Column(DATETIME, nullable=False)
 
 
 class Student(Base):
     __tablename__ = 'student'
 
-    edition = Column(String, primary_key=True)
-    level = Column(String, primary_key=True)
-    name = Column(String, primary_key=True)
-    school = Column(String, primary_key=True)
-    school_type = Column(String)
-    city = Column(String, primary_key=True)
-    state_code = Column(String, primary_key=True)
-    medal = Column(String)
-    honorable_mention = Column(String)
+    edition = Column(NVARCHAR(20), primary_key=True)
+    level = Column(SMALLINT, primary_key=True)
+    name = Column(NVARCHAR(100), primary_key=True)
+    city = Column(NVARCHAR(30), primary_key=True)
+    state_code = Column(NCHAR(2), primary_key=True)
+    school = Column(NVARCHAR(100), primary_key=True)
+    school_type = Column(NCHAR(1), nullable=False)
+    medal = Column(NVARCHAR(10))
+    honorable_mention = Column(BOOLEAN)
+    created_at = Column(DATETIME, nullable=False)
 
 
 class Teacher(Base):
     __tablename__ = 'teacher'
 
-    edition = Column(String, primary_key=True)
-    state_code = Column(String, primary_key=True)
-    city = Column(String, primary_key=True)
-    teacher = Column(String, primary_key=True)
-    school = Column(String, primary_key=True)
-    school_type = Column(String)
-    group = Column(String)
+    edition = Column(NVARCHAR(20), primary_key=True)
+    state_code = Column(NCHAR(2), primary_key=True)
+    city = Column(NVARCHAR(30), primary_key=True)
+    teacher = Column(NVARCHAR(100), primary_key=True)
+    school = Column(NVARCHAR(100), primary_key=True)
+    school_type = Column(NCHAR(1), nullable=False)
+    group = Column(SMALLINT)
+    created_at = Column(DATETIME, nullable=False)
