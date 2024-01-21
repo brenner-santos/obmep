@@ -1,19 +1,23 @@
 import scrapy
 
 
-class City(scrapy.Item):
+class CityItem(scrapy.Item):
+    edition = scrapy.Field()
     state_code = scrapy.Field()
     city = scrapy.Field()
 
 
-class School(scrapy.Item):
+class SchoolItem(scrapy.Item):
+    edition = scrapy.Field()
     state_code = scrapy.Field()
     city = scrapy.Field()
     school = scrapy.Field()
     school_type = scrapy.Field()
+    group = scrapy.Field()
 
 
-class Student(scrapy.Item):
+class StudentItem(scrapy.Item):
+    edition = scrapy.Field()
     level = scrapy.Field()
     name = scrapy.Field()
     school = scrapy.Field()
@@ -24,7 +28,8 @@ class Student(scrapy.Item):
     honorable_mention = scrapy.Field()
 
 
-class Teacher(scrapy.Item):
+class TeacherItem(scrapy.Item):
+    edition = scrapy.Field()
     state_code = scrapy.Field()
     city = scrapy.Field()
     teacher = scrapy.Field()
