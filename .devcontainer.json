@@ -2,6 +2,11 @@
 	"name": "obmep",
 	"build": { "dockerfile": "Dockerfile" },
 	"customizations": {
-		"vscode": { "extensions": [ "ms-python.python" ] }
+		"vscode": { 
+			"extensions": [
+				"ms-python.python",
+				"qwtel.sqlite-viewer"
+			] 
+		}
 	}
 }

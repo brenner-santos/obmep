@@ -1,14 +1,15 @@
-import scrapy
+from obmep.items import StudentItem
+from obmep.spiders import BaseStudentSpider
 
-from obmep.items import Student
 
-
-class EdObmep2005Student(scrapy.Spider):
-    name = 'EdObmep2005Student'
+class EdObmep2005StudentSpider(BaseStudentSpider):
+    name = 'obmep_2005-student'
     allowed_domains = ['premiacao.obmep.org.br']
     start_urls = [
         'https://premiacao.obmep.org.br/2005/verRelatorioPremiadosGeral.do.htm'
     ]
+
+    EDITION = 'OBMEP 2005'
 
     def parse(self, response):
         tables = response.css('table')
@@ -17,7 +18,7 @@ class EdObmep2005Student(scrapy.Spider):
             level = table.css('font::text').get().strip()
             for row in table.css('tbody tr'):
                 data = row.css('td::text').getall()
-                yield Student(
+                yield StudentItem(
                     level=level,
                     name=data[1].strip(),
                     school=data[2].strip(),
