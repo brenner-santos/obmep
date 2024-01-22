@@ -2,8 +2,8 @@ from obmep.items import CityItem
 from obmep.spiders import BaseCitySpider
 
 
-class EdObmep2005CitySpider(BaseCitySpider):
-    name = 'obmep_2005-city'
+class Ed2005CitySpider(BaseCitySpider):
+    name = '2005-city'
     allowed_domains = ['premiacao.obmep.org.br']
     start_urls = [
         'https://premiacao.obmep.org.br/2005/verRelatorioMunicipiosPremiados.do.htm'

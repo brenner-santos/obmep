@@ -2,8 +2,8 @@ from obmep.items import SchoolItem
 from obmep.spiders import BaseSchoolSpider
 
 
-class EdObmep2005SchoolSpider(BaseSchoolSpider):
-    name = 'obmep_2005-school'
+class Ed2005SchoolSpider(BaseSchoolSpider):
+    name = '2005-school'
     allowed_domains = ['premiacao.obmep.org.br']
     start_urls = [
         'https://premiacao.obmep.org.br/2005/verRelatorioEscolasPremiadas.do.htm'
