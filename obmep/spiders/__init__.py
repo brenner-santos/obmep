@@ -4,6 +4,36 @@ from scrapy.utils.project import get_project_settings
 
 
 class BaseObmepSpider(scrapy.Spider):
+    STATES_CODE = [
+        'AC',
+        'AL',
+        'AM',
+        'AP',
+        'BA',
+        'CE',
+        'DF',
+        'ES',
+        'GO',
+        'MA',
+        'MG',
+        'MS',
+        'MT',
+        'PA',
+        'PB',
+        'PE',
+        'PI',
+        'PR',
+        'RJ',
+        'RN',
+        'RO',
+        'RR',
+        'RS',
+        'SC',
+        'SE',
+        'SP',
+        'TO',
+    ]
+
     def __init__(self, *args, **kwargs):
         super(BaseObmepSpider, self).__init__(*args, **kwargs)
 
