@@ -1,0 +1,22 @@
+name: Build
+
+on: 
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install Dependencies with Poetry
+      run: pip install poetry && poetry install
+    - name: Check pre-commit hooks
+      run: poetry run pre-commit run --all

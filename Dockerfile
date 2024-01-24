@@ -6,10 +6,3 @@ RUN  apk update \
      && pip install poetry 
 
 ENV POETRY_VIRTUALENVS_IN_PROJECT=1
-
-WORKDIR /obmep
-
-COPY pyproject.toml ./
-COPY obmep ./obmep
-
-RUN poetry install
