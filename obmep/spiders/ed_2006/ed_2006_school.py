@@ -12,7 +12,7 @@ class Ed2006SchoolSpider(BaseSchoolSpider):
     EDITION = 'OBMEP 2006'
 
     def parse(self, response):
-        for row in response.css('table:last-of-type tbody tr'):
+        for row in response.css('table tbody tr'):
             data = row.css('td::text').getall()
             yield SchoolItem(
                 state_code=data[1],
