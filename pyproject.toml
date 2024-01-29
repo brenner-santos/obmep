@@ -16,6 +16,7 @@ blue = "^0.9.1"
 isort = "^5.13.2"
 pre-commit = "^3.6.0"
 taskipy = "^1.12.2"
+commitizen = "^3.13.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -28,3 +29,11 @@ line_length = 79
 [tool.taskipy.tasks]
 check = "blue --check --diff . && isort --check --diff ."
 format = "blue . && isort ."
+
+[tool.commitizen]
+version = "0.1.0"
+tag_format = "v$version"
+version_files = [
+    "pyproject.toml:version"
+]
+update_changelog_on_bump = true
