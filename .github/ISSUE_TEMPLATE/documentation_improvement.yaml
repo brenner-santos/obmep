@@ -1,0 +1,39 @@
+name: Melhoria da Documentação
+description: Relatar documentação errada ou ausente
+title: "docs: "
+labels: [docs, needs triage]
+
+body:
+  - type: checkboxes
+    attributes:
+      label: Pesquisa
+      options:
+        - label: >
+            Verifiquei se o problema ainda existe nas versões mais recentes dos documentos
+            na branch `main`
+          required: true
+  - type: textarea
+    id: location
+    attributes:
+      label: Localização da documentação
+      description: >
+        Forneça a localização da documentação.
+      placeholder: https://github.com/brenner-santos/obmep/blob/main/docs/index.md
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema
+      description: >
+        Forneça uma descrição de qual documentação você acredita que precisa 
+        ser corrigida/melhorada
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Correção sugerida para documentação
+      description: >
+        Explique a correção sugerida e **por que** ela é melhor que a 
+        documentação existente
