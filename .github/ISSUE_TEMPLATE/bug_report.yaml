@@ -1,7 +1,7 @@
 name: Relatar Bug
 description: Relatar comportamento incorreto
 title: "fix: "
-labels: [Fix, Needs Triage]
+labels: [fix, needs triage]
 
 body:
   - type: checkboxes

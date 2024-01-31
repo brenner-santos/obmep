@@ -1,7 +1,7 @@
-name: Solicitação de funcionalidade
+name: Solicitação de Funcionalidade
 description: Sugira uma ideia para este projeto
 title: "feat: "
-labels: [Feat, Needs Triage]
+labels: [feat, needs triage]
 
 body:
   - type: checkboxes
@@ -13,7 +13,7 @@ body:
         propor.
       options:
         - label: Adicionar nova funcionalidade.
-        - label: Alterar funcionadade existente.
+        - label: Alterar funcionalidade existente.
         - label: Remover funcionalidade existente.
   - type: textarea
     id: description
