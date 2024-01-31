@@ -1,0 +1,50 @@
+name: Solicitação de funcionalidade
+description: Sugira uma ideia para este projeto
+title: "feat: "
+labels: [Feat, Needs Triage]
+
+body:
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Tipo de solicitação
+      description: >
+        Selecione o tipo de solicitação de funcionalidade você gostaria de 
+        propor.
+      options:
+        - label: Adicionar nova funcionalidade.
+        - label: Alterar funcionadade existente.
+        - label: Remover funcionalidade existente.
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do problema
+      description: Descreva qual problema a funcionalidade resolveria
+      placeholder: Eu gostaria que o projeto fornecesse...
+    validations:
+      required: true
+  - type: textarea
+    id: feature
+    attributes:
+      label: Descrição da funcionalidade
+      description: > 
+        Descreva como o novo recurso seria implementado, usando psudocódigo, se 
+        relevante.
+    validations:
+      required: true
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Solução Alternativa
+      description: >
+        Descreva qualquer solução alternativa (funcionalidade existente, 
+        pacote de terceiros, etc.) que satisfaria a solicitação de 
+        funcionalidade.
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto Adicional
+      description: >
+        Forneça quaisquer issues relevantes do GitHub, exemplos de código ou 
+        referências que ajudem a descrever e dar suporte a solicitação de 
+        funcionalidade.
