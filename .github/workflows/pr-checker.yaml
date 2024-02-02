@@ -13,11 +13,13 @@ jobs:
     steps:
     - name : Check PR title validity
       run: |
-        echo "${{ github.event.pull_request.title }}" | grep -E "(?s)(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump)(\(\S+\))?!?:( [^\n\r]+)((\n\n.*)|(\s*))?$"
-        if [ $? -ne 0 ]; then
-        echo "pull request title validation: failed!"
-        echo "please enter a pull request title in the commitizen format"
-        echo "pattern: (?s)(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump)(\(\S+\))?!?:( [^\n\r]+)((\n\n.*)|(\s*))?$"
+        patern = "(?s)(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump)(\(\S+\))?!?:( [^\n\r]+)((\n\n.*)|(\s*))?$"
+        if [[ "${{ github.event.pull_request.title }}" =~ ${patern} ]]; then
+          exit 0
+        else
+          echo "pull request title validation: failed!"
+          echo "please enter a pull request title in the commitizen format"
+          echo "pattern: ${patern}"
           exit 1
         fi
       env:
