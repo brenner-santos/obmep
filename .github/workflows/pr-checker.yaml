@@ -6,24 +6,21 @@ on:
       - edited
       - reopened
       - synchronize
-
 jobs:
   pr-check-title:
     runs-on: ubuntu-latest
     steps:
-    - name : Check PR title validity
-      run: |
-        patern = "(?s)(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump)(\(\S+\))?!?:( [^\n\r]+)((\n\n.*)|(\s*))?$"
-        if [[ "${{ github.event.pull_request.title }}" =~ ${patern} ]]; then
-          exit 0
-        else
-          echo "pull request title validation: failed!"
-          echo "please enter a pull request title in the commitizen format"
-          echo "pattern: ${patern}"
-          exit 1
-        fi
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install commitizen
+        run: pip install commitizen
+      - name: Check PR title validity
+        run: cz check -m "${{ github.event.pull_request.title }}"
   test:
     uses: ./.github/workflows/test.yaml
