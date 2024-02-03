@@ -4,26 +4,19 @@ from obmep.items import StudentItem
 from obmep.spiders import BaseStudentSpider
 
 
-class Ed17obmepStudentSpider(BaseStudentSpider):
+class Ed17ObmepStudentSpider(BaseStudentSpider):
     name = '17obmep-student'
-    allowed_domains = ['premiacao.obmep.org.br']
-    start_urls = ['http://premiacao.obmep.org.br/17obmep/mapa.htm']
+    EDITION = '17obmep'
 
-    EDITION = '17ª OBMEP'
+    def start_requests(self):
+        url = (
+            'http://premiacao.obmep.org.br/17obmep/verRelatorioPremiadosGeral'
+        )
+        for code in self.STATES_CODE:
+            yield scrapy.Request(f'{url}-{code}.do.htm')
+            yield scrapy.Request(f'{url}-{code}.privada.do.htm')
 
     def parse(self, response):
-        report = 'verRelatorioPremiadosGeral'
-        for code in self.STATES_CODE:
-            yield scrapy.Request(
-                response.urljoin(f'{report}-{code}.do.htm'),
-                callback=self.parse_student,
-            )
-            yield scrapy.Request(
-                response.urljoin(f'{report}-{code}.privada.do.htm'),
-                callback=self.parse_student,
-            )
-
-    def parse_student(self, response):
         tables = response.css('table')
 
         for table in tables:

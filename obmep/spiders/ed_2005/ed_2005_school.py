@@ -2,14 +2,12 @@ from obmep.items import SchoolItem
 from obmep.spiders import BaseSchoolSpider
 
 
-class Ed2005SchoolSpider(BaseSchoolSpider):
-    name = '2005-school'
-    allowed_domains = ['premiacao.obmep.org.br']
+class EdObmep2005SchoolSpider(BaseSchoolSpider):
+    name = 'obmep2005-school'
+    EDITION = 'obmep2005'
     start_urls = [
         'https://premiacao.obmep.org.br/2005/verRelatorioEscolasPremiadas.do.htm'
     ]
-
-    EDITION = 'OBMEP 2005'
 
     def parse(self, response):
         for row in response.css('table:last-of-type tbody tr'):

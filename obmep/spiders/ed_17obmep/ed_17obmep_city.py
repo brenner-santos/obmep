@@ -2,14 +2,12 @@ from obmep.items import CityItem
 from obmep.spiders import BaseCitySpider
 
 
-class Ed17obmepCitySpider(BaseCitySpider):
+class Ed17ObmepCitySpider(BaseCitySpider):
     name = '17obmep-city'
-    allowed_domains = ['premiacao.obmep.org.br']
+    EDITION = '17obmep'
     start_urls = [
         'https://premiacao.obmep.org.br/17obmep/verRelatorioSecretariasEducacaoPremiados.do.htm'
     ]
-
-    EDITION = '17ª OBMEP'
 
     def parse(self, response):
         for row in response.css('table:last-of-type tbody tr'):

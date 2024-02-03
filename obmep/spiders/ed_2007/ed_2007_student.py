@@ -2,20 +2,18 @@ from obmep.items import StudentItem
 from obmep.spiders import BaseStudentSpider
 
 
-class Ed2006StudentSpider(BaseStudentSpider):
-    name = '2007-student'
-    allowed_domains = ['premiacao.obmep.org.br']
+class EdObmep2007StudentSpider(BaseStudentSpider):
+    name = 'obmep2007-student'
+    EDITION = 'obmep2007'
     start_urls = [
         'https://premiacao.obmep.org.br/2007/verRelatorioPremiadosGeral.do.htm'
     ]
-
-    EDITION = 'OBMEP 2007'
 
     def parse(self, response):
         tables = response.css('table')
 
         for table in tables:
-            level = table.css('font::text').get().strip()
+            level = table.css('font::text').get()
             for row in table.css('tbody tr'):
                 data = row.css('td::text').getall()
                 yield StudentItem(

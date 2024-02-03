@@ -2,14 +2,12 @@ from obmep.items import TeacherItem
 from obmep.spiders import BaseTeacherSpider
 
 
-class Ed2006TeacherSpider(BaseTeacherSpider):
-    name = '2006-teacher'
-    allowed_domains = ['premiacao.obmep.org.br']
+class EdObmep2006TeacherSpider(BaseTeacherSpider):
+    name = 'obmep2006-teacher'
+    EDITION = 'obmep2006'
     start_urls = [
         'https://premiacao.obmep.org.br/2006/verRelatorioProfessoresPremiados.do.htm'
     ]
-
-    EDITION = 'OBMEP 2006'
 
     def parse(self, response):
         for row in response.css('tbody tr'):

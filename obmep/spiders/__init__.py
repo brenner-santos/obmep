@@ -4,6 +4,7 @@ from scrapy.utils.project import get_project_settings
 
 
 class BaseObmepSpider(scrapy.Spider):
+    allowed_domains = ['premiacao.obmep.org.br']
     STATES_CODE = [
         'AC',
         'AL',
