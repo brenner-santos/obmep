@@ -1,0 +1,28 @@
+id_state_ibge,cd_state,nm_state,nm_region
+12,AC,Acre,Norte
+27,AL,Alagoas,Nordeste
+13,AM,Amazonas,Norte
+16,AP,Amapá,Norte
+29,BA,Bahia,Nordeste
+23,CE,Ceará,Nordeste
+53,DF,Distrito Federal,Centro Oeste
+32,ES,Espirito Santo,Sudeste
+52,GO,Goiais,Centro Oeste
+21,MA,Maranhã,Nordeste
+31,MG,Minas Gerais,Sudeste
+50,MS,Mato Grosso do Sul,Centro Oeste
+51,MT,Mato Grosso,Centro Oeste
+15,PA,Pará,Norte
+25,PB,Paraíba,Nordeste
+26,PE,Pernambuco,Nordeste
+22,PI,Piauí,Nordeste
+41,PR,Paraná,Sul
+33,RJ,Rio de Janeiro,Sudeste
+24,RN,Rio Grande do Norte,Nordeste
+11,RO,Rondônia,Nordeste
+14,RR,Roraima,Nordeste
+43,RS,Rio Grande do Sul,Sul
+42,SC,Santa Catarina,Sul
+28,SE,Sergipe,Nordeste
+35,SP,São Paulo,Sudeste
+17,TO,Tocantins,Norte
