@@ -29,7 +29,7 @@ class DefaultValuesPipeline:
 
 class JsonPipeline:
     def open_spider(self, spider):
-        edition_code, table = getattr(self, 'name').split('-', 1)
+        edition_code, table = getattr(spider, 'name').split('-', 1)
         filename = f'./data/{table}/{edition_code}.json'
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         self.file = open(filename, 'w')

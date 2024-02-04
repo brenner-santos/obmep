@@ -1,42 +1,38 @@
-import scrapy
+from scrapy.item import Field, Item
 
 
-class CityItem(scrapy.Item):
-    edition = scrapy.Field()
-    state_code = scrapy.Field()
-    city = scrapy.Field()
-    created_at = scrapy.Field()
+class CityItem(Item):
+    created_at = Field()
+    edition = Field()
+    award = Field()
+    name = Field()
+    state_code = Field()
 
 
-class SchoolItem(scrapy.Item):
-    edition = scrapy.Field()
-    state_code = scrapy.Field()
-    city = scrapy.Field()
-    school = scrapy.Field()
-    school_type = scrapy.Field()
-    group = scrapy.Field()
-    created_at = scrapy.Field()
+class SchoolItem(Item):
+    created_at = Field()
+    edition = Field()
+    award = Field()
+    name = Field()
+    type = Field()
+    group = Field()
+    city_name = Field()
+    state_code = Field()
 
 
-class StudentItem(scrapy.Item):
-    edition = scrapy.Field()
-    level = scrapy.Field()
-    name = scrapy.Field()
-    school = scrapy.Field()
-    school_type = scrapy.Field()
-    city = scrapy.Field()
-    state_code = scrapy.Field()
-    medal = scrapy.Field()
-    honorable_mention = scrapy.Field()
-    created_at = scrapy.Field()
+class StudentItem(Item):
+    created_at = Field()
+    edition = Field()
+    award = Field()
+    name = Field()
+    level = Field()
+    school = Field()
 
 
-class TeacherItem(scrapy.Item):
-    edition = scrapy.Field()
-    state_code = scrapy.Field()
-    city = scrapy.Field()
-    teacher = scrapy.Field()
-    school = scrapy.Field()
-    school_type = scrapy.Field()
-    group = scrapy.Field()
-    created_at = scrapy.Field()
+class TeacherItem(Item):
+    created_at = Field()
+    edition = Field()
+    award = Field()
+    name = Field()
+    group = Field()
+    schools = Field()

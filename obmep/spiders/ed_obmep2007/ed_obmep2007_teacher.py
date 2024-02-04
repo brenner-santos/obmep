@@ -1,22 +1,30 @@
+import json
+
 from obmep.items import TeacherItem
 from obmep.spiders import BaseTeacherSpider
 
 
 class EdObmep2007TeacherSpider(BaseTeacherSpider):
     name = 'obmep2007-teacher'
-    EDITION = 'obmep2007'
     start_urls = [
         'https://premiacao.obmep.org.br/2007/verRelatorioProfessoresPremiados.do.htm'
     ]
 
     def parse(self, response):
+        awards = ['Estágio no IMPA']
+
         for row in response.css('tbody tr'):
             data = row.css('td::text').getall()
             yield TeacherItem(
-                state_code=data[1],
-                city=data[2],
-                teacher=data[3],
-                school=data[4],
-                school_type=data[5],
+                award=awards[0],
+                name=data[3],
                 group=None,
+                schools=[
+                    {
+                        'name': data[4],
+                        'type': data[5],
+                        'city_name': data[2],
+                        'state_code': data[1],
+                    }
+                ],
             )
