@@ -4,18 +4,18 @@ from scrapy import signals
 from sqlalchemy import Column, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.types import DATETIME, INTEGER, JSON, NUMERIC, NVARCHAR
+from sqlalchemy.types import JSON, DateTime, Integer, Numeric, String
 
 Base = declarative_base()
 
 
 class JobStats(Base):
     __tablename__ = 'job_stats'
-    id = Column(INTEGER, primary_key=True)
-    spider = Column(NVARCHAR(20))
-    start_time = Column(DATETIME)
-    elapsed_time_seconds = Column(NUMERIC(9, 2))
-    item_scraped_count = Column(INTEGER)
+    id = Column(Integer, primary_key=True)
+    spider = Column(String)
+    start_time = Column(DateTime)
+    elapsed_time_seconds = Column(Numeric)
+    item_scraped_count = Column(Integer)
     job_stats = Column(JSON)
 
 

@@ -1,8 +1,6 @@
 import datetime as dt
-
-from sqlalchemy.orm import sessionmaker
-
-from obmep.models import Base, create_table, db_connect
+import json
+import os
 
 
 class DefaultValuesPipeline:
@@ -10,83 +8,37 @@ class DefaultValuesPipeline:
         self.created_at = dt.datetime.utcnow()
 
     def process_item(self, item, spider):
-        item['edition'] = getattr(spider, 'EDITION')
+        item['edition'] = getattr(spider, 'name').split('-')[0]
         item['created_at'] = self.created_at
 
+        for field, value in item.items():
+            if isinstance(value, (str, list, dict)):
+                item[field] = self.clear_field(value)
+
         return item
 
+    def clear_field(self, value):
+        if isinstance(value, str):
+            return value.strip()
+        elif isinstance(value, list):
+            return [self.clear_field(elem) for elem in value]
+        elif isinstance(value, dict):
+            return {key: self.clear_field(val) for key, val in value.items()}
+        return value
 
-class SQLDatabasePipeline:
+
+class JsonPipeline:
     def open_spider(self, spider):
-        engine = db_connect()
-        create_table(engine)
-        self.Session = sessionmaker(bind=engine)
+        edition_code, table = getattr(self, 'name').split('-', 1)
+        filename = f'./data/{table}/{edition_code}.json'
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        self.file = open(filename, 'w')
+        self.data = []
+
+    def close_spider(self, spider):
+        self.file.write(json.dumps(self.data, default=str, indent=1))
+        self.file.close()
 
     def process_item(self, item, spider):
-        session = self.Session()
-        table_name = getattr(spider, 'TABLE_NAME')
-        fields = Base.metadata.tables[table_name].columns.keys()
-        values = {field: item.get(field) for field in fields}
-        stmt = Base.metadata.tables[table_name].insert().values(**values)
-
-        try:
-            session.execute(stmt)
-            session.commit()
-
-        except:
-            session.rollback()
-            raise
-
-        finally:
-            session.close()
-
-        return item
-
-
-class ProcessCityPipeline:
-    def process_item(self, item, spider):
-        item['state_code'] = item['state_code'].strip()
-        item['city'] = item['city'].strip()
-
-        return item
-
-
-class ProcessSchoolPipeline:
-    def process_item(self, item, spider):
-        item['state_code'] = item['state_code'].strip()
-        item['city'] = item['city'].strip()
-        item['school'] = item['school'].strip()
-        item['school_type'] = item['school_type'].strip()
-        item['group'] = item['group'].strip() if item['group'] else None
-
-        return item
-
-
-class ProcessStudentPipeline:
-    def process_item(self, item, spider):
-        item['level'] = int(item['level'].strip()[-1])
-        item['name'] = item['name'].strip()
-        item['city'] = item['city'].strip()
-        item['state_code'] = item['state_code'].strip()
-        item['school'] = item['school'].strip()
-        item['school_type'] = item['school_type'].strip()
-        item['medal'] = item['medal'].strip()
-        item['medal'] = None if item['medal'] == '---' else item['medal']
-        item['honorable_mention'] = item['honorable_mention'].strip() == 'Sim'
-
-        return item
-
-
-class ProcessTeacherPipeline:
-    def process_item(self, item, spider):
-        item['state_code'] = item['state_code'].strip()
-        item['city'] = item['city'].strip()
-        item['teacher'] = item['teacher'].strip()
-        item['school'] = item['school'].strip()
-        item['school_type'] = item['school_type'].strip()
-        if item['group']:
-            item['group'] = int(item['group'].strip().split(' ')[-1])
-        else:
-            item['group'] = None
-
+        self.data.append(dict(item))
         return item

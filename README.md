@@ -40,7 +40,7 @@ scrapy list
 scrapy crawl <nome_do_raspador>       # exemplo: scrapy crawl obmep2005-city
 ```
 
-4. Os dados coletados na raspagem serão salvos no arquivo `obmep.db`
+4. Os dados coletados na raspagem serão salvos por padrão na pasta `data` no formato `.json`. No arquivo `obmep.db` você pode ter informações estatísticas das execuções dos raspadores.
 
 ### Dicas de execução
 
