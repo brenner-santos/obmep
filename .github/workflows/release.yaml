@@ -7,7 +7,6 @@ jobs:
   
   check-commitizen:
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,7 +24,9 @@ jobs:
   release:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
-    needs: check-commitizen
+    needs: 
+      - check-commitizen
+      - test
     steps:
       - name: Checkout
         uses: actions/checkout@v4

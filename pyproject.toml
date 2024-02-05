@@ -32,7 +32,7 @@ format = "blue . && isort ."
 
 [tool.commitizen]
 version = "0.2.0"
-tag_format = "v$version"
+tag_format = "$version"
 version_files = [
     "pyproject.toml:version"
 ]
