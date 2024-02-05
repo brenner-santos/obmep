@@ -28,11 +28,11 @@ class EdObmep2010TeacherSpider(BaseTeacherSpider):
         keys = ['name', 'type', 'city_name', 'state_code']
 
         names = self.remove_dash(data[4].css('::text').getall())
-        cities = self.remove_dash(data[1].css('::text').getall())
-        state_codes = self.remove_dash(data[0].css('::text').getall())
+        cities = self.remove_dash(data[2].css('::text').getall())
+        state_codes = self.remove_dash(data[1].css('::text').getall())
 
-        names = [name[:-3] for name in names]
         types = [name[-2:-1] for name in names]
+        names = [name[:-3] for name in names]
 
         types = self.fill(types, len(names))
         cities = self.fill(cities, len(names))

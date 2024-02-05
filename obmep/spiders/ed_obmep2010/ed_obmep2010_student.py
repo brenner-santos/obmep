@@ -8,9 +8,7 @@ class EdObmep2010StudentSpider(BaseStudentSpider):
     name = 'obmep2010-student'
 
     def start_requests(self):
-        url = (
-            'http://premiacao.obmep.org.br/17obmep/verRelatorioPremiadosGeral'
-        )
+        url = 'http://premiacao.obmep.org.br/2010/verRelatorioPremiadosGeral'
         for code in self.STATES_CODE:
             yield Request(f'{url}-{code}.do.htm')
 
