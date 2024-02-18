@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "obmep"
-version = "0.2.0"
+version = "0.3.0"
 description = ""
 authors = ["Brenner Santos <bs.brenner.santos@gmail.com>"]
 license = "MIT License"
@@ -31,7 +31,7 @@ check = "blue --check --diff . && isort --check --diff ."
 format = "blue . && isort ."
 
 [tool.commitizen]
-version = "0.2.0"
+version = "0.3.0"
 tag_format = "$version"
 version_files = [
     "pyproject.toml:version"
