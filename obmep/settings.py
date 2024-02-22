@@ -16,6 +16,9 @@ EXTENSIONS = {
 }
 
 HTTPCACHE_ENABLED = True
+COOKIES_ENABLED = False
+TELNETCONSOLE_ENABLED = False
+DOWNLOAD_DELAY = 2
 
 # Set settings whose default value is deprecated to a future-proof value
 REQUEST_FINGERPRINTER_IMPLEMENTATION = '2.7'
