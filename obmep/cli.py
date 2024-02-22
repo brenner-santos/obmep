@@ -7,14 +7,16 @@ from obmep.__version__ import __version__
 
 
 def get_all_spiders():
-    settings = get_project_settings()
-    spider_loader = SpiderLoader.from_settings(settings)
+    spider_loader = SpiderLoader.from_settings(get_project_settings())
     return spider_loader.list()
 
 
-all_spiders = get_all_spiders()
-all_editions = set(spider.split('-', 1)[0] for spider in all_spiders)
-all_tables = set(spider.split('-', 1)[1] for spider in all_spiders)
+def get_editions(spiders: list[str] = get_all_spiders()):
+    return set(spider.split('-', 1)[0] for spider in spiders)
+
+
+def get_tables(spiders: list[str] = get_all_spiders()):
+    return set(spider.split('-', 1)[1] for spider in spiders)
 
 
 @click.group()
@@ -26,20 +28,20 @@ def main():
 @main.command()
 def editions():
     """List editions"""
-    for edition in sorted(all_editions):
+    for edition in sorted(get_editions()):
         click.echo(edition)
 
 
 @main.command()
 def tables():
     """List tables"""
-    for edition in sorted(all_tables):
-        click.echo(edition)
+    spiders = get_all_spiders()
+    for table in sorted(get_tables()):
+        click.echo(table)
 
 
 def crawl_spiders(spiders: list[str]):
-    settings = get_project_settings()
-    process = CrawlerProcess(settings)
+    process = CrawlerProcess(get_project_settings())
     for spider in spiders:
         process.crawl(spider)
     process.start()
@@ -47,7 +49,7 @@ def crawl_spiders(spiders: list[str]):
 
 def crawl_all_spiders(ctx, param, value):
     if value:
-        crawl_spiders(all_spiders)
+        crawl_spiders(get_all_spiders())
         ctx.exit()
 
 
@@ -56,7 +58,7 @@ def crawl_all_spiders(ctx, param, value):
     '-e',
     '--edition',
     metavar='EDITION',
-    type=click.Choice(all_editions),
+    type=click.Choice(get_editions()),
     default=None,
     help='Crawl a edition',
 )
@@ -64,7 +66,7 @@ def crawl_all_spiders(ctx, param, value):
     '-t',
     '--table',
     metavar='TABLE',
-    type=click.Choice(all_tables),
+    type=click.Choice(get_tables()),
     default=None,
     help='Crawl a table',
 )
@@ -85,6 +87,7 @@ def crawl(ctx, edition=None, table=None, all=False):
         click.echo(ctx.get_help())
         ctx.exit()
 
+    spiders = get_all_spiders()
     if edition:
         spiders = [
             spider for spider in spiders if edition == spider.split('-', 1)[0]
